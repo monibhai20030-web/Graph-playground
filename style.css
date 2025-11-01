@@ -1,0 +1,203 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed to flex-start to align content to the top */
+    padding: 20px;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px; /* Added some margin for spacing */
+}
+
+/* Controls - MODIFIED */
+.controls {
+    display: grid;
+    /* This makes sure each row explicitly defines its columns, ensuring no strange wrapping */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 15px;
+    margin-bottom: 25px; /* Increased margin */
+}
+
+.control-group {
+    display: flex;
+    gap: 5px;
+    align-items: center; /* Vertically align items in the group */
+    flex-wrap: wrap; /* Allow items to wrap if space is too small */
+}
+
+input[type="text"] {
+    flex: 1; /* Allow input to grow and shrink */
+    min-width: 80px; /* Ensure input doesn't get too small */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+select {
+    flex: 1;
+    min-width: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white; /* Ensures consistent background */
+    font-family: inherit; /* Uses the body's font */
+    box-sizing: border-box;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#remove-vertex-btn, #remove-edge-btn {
+    background-color: #e74c3c;
+}
+#remove-vertex-btn:hover, #remove-edge-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Visualization */
+.visualization {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#graph-svg {
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    border-radius: 4px;
+    display: block; /* Ensures SVG behaves like a block element, helpful for centering */
+}
+
+/* SVG Styles */
+.edge {
+    stroke: #999;
+    stroke-width: 2;
+}
+
+.vertex {
+    fill: #3498db;
+    stroke: #2980b9;
+    stroke-width: 2;
+    cursor: grab; /* Indicate draggable */
+}
+.vertex:active {
+    cursor: grabbing;
+}
+
+
+.vertex-label {
+    font-size: 14px;
+    font-weight: bold;
+    fill: #fff;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none; /* Allows clicking the circle underneath */
+}
+
+/* Data Views */
+.data-views {
+    margin-top: 25px; /* Added spacing above data views */
+}
+
+.view-toggles {
+    display: flex; /* Make buttons display side-by-side */
+    gap: 5px; /* Space between buttons */
+    margin-bottom: 15px;
+}
+
+.view-toggles button {
+    flex-grow: 1; /* Allow buttons to fill available space */
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+}
+
+.view-toggles button.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.view {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 4px;
+    min-height: 100px;
+    font-family: "Courier New", Courier, monospace;
+    overflow-x: auto; /* Allow horizontal scrolling for wide tables */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Matrix Table */
+#matrix-view table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: max-content; /* Ensure table doesn't shrink too much */
+}
+#matrix-view th, #matrix-view td {
+    border: 1px solid #bdc3c7;
+    padding: 8px;
+    text-align: center;
+}
+#matrix-view th {
+    background-color: #dfe6e9;
+}
+
+/* List */
+#list-view ul {
+    list-style: none;
+    padding-left: 0;
+}
+#list-view li {
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .controls {
+        grid-template-columns: 1fr; /* Stack controls vertically on smaller screens */
+    }
+    .control-group {
+        flex-direction: column; /* Stack inputs/buttons vertically in a group */
+        align-items: stretch; /* Stretch items to fill width */
+    }
+    .control-group button {
+        width: 100%; /* Make buttons full width */
+    }
+    input[type="text"] {
+        width: 100%; /* Make inputs full width */
+    }
+}
